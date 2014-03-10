@@ -26,7 +26,7 @@ full-blown feature set.
 
 =over 4
 
-=item B<textdomain>(DOMAIN, [CONFIGURATION])
+=item B<textdomain>( $domain, [$configuration] )
 
 =back
 
@@ -34,11 +34,13 @@ full-blown feature set.
 
 =over 4
 
-=item B<dispatcher>((TYPE, NAME, OPTIONS)|(COMMAND => NAME, [NAMEs]))
+=item B<dispatcher>( <$type, $name, %options>|<$command, @names> )
 
 Not supported.
 
-=item B<report>([HASH-of-OPTIONS], REASON, MESSAGE|(STRING,PARAMS))
+=item B<report>( [$options], $reason, $message|<STRING,$params> )
+
+Be warned that %options is a HASH here.
 
  -Option  --Default
   errno     $! or 1
@@ -52,7 +54,7 @@ Not supported.
 
 =back
 
-=item B<try>(CODE, OPTIONS)
+=item B<try>(CODE, %options)
 
 =back
 
@@ -60,27 +62,27 @@ Not supported.
 
 =over 4
 
-=item B<alert>(MESSAGE)
+=item B<alert>($message)
 
-=item B<assert>(MESSAGE)
+=item B<assert>($message)
 
-=item B<error>(MESSAGE)
+=item B<error>($message)
 
-=item B<failure>(MESSAGE)
+=item B<failure>($message)
 
-=item B<fault>(MESSAGE)
+=item B<fault>($message)
 
-=item B<info>(MESSAGE)
+=item B<info>($message)
 
-=item B<mistake>(MESSAGE)
+=item B<mistake>($message)
 
-=item B<notice>(MESSAGE)
+=item B<notice>($message)
 
-=item B<panic>(MESSAGE)
+=item B<panic>($message)
 
-=item B<trace>(MESSAGE)
+=item B<trace>($message)
 
-=item B<warning>(MESSAGE)
+=item B<warning>($message)
 
 =back
 
@@ -90,21 +92,21 @@ No translations, no L<Log::Report::Message> objects returned.
 
 =over 4
 
-=item B<N__>(MSGID)
+=item B<N__>($msgid)
 
-=item B<N__n>(SINGLE_MSGID, PLURAL_MSGID)
+=item B<N__n>($single_msgid, $plural_msgid)
 
 =item B<N__w>(STRING)
 
-=item B<__>(MSGID)
+=item B<__>($msgid)
 
-=item B<__n>(MSGID, PLURAL_MSGID, COUNT, PAIRS)
+=item B<__n>($msgid, $plural_msgid, $count, PAIRS)
 
-=item B<__nx>(MSGID, PLURAL_MSGID, COUNT, PAIRS)
+=item B<__nx>($msgid, $plural_msgid, $count, PAIRS)
 
-=item B<__x>(MSGID, PAIRS)
+=item B<__x>($msgid, PAIRS)
 
-=item B<__xn>(SINGLE_MSGID, PLURAL_MSGID, COUNT, PAURS)
+=item B<__xn>($single_msgid, $plural_msgid, $count, PAIRS)
 
 =back
 
@@ -112,7 +114,7 @@ No translations, no L<Log::Report::Message> objects returned.
 
 =over 4
 
-=item $obj-E<gt>B<import>([DOMAIN], OPTIONS)
+=item $obj-E<gt>B<import>( [$domain], %options )
 
 See Log::Report subroutine import.
 
@@ -120,8 +122,8 @@ See Log::Report subroutine import.
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Optional distribution version 1.00,
-built on January 05, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Optional distribution version 1.01,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

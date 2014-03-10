@@ -22,10 +22,10 @@ man-page may contain some useful background information.
 
 =over 4
 
-=item B<expand_reasons>(REASONS)
+=item B<expand_reasons>($reasons)
 
 Returns a sub-set of all existing message reason labels, based on the
-content REASONS string. The following rules apply:
+content $reasons string. The following rules apply:
  REASONS = BLOCK [ ',' BLOCKS]
  BLOCK   = '-' TO | FROM '-' TO | ONE | SOURCE
  FROM,TO,ONE = 'TRACE' | 'ASSERT' | ,,, | 'PANIC'
@@ -43,16 +43,16 @@ example: of expended REASONS
  USER          # == MISTAKE,ERROR
  ALL           # == TRACE-PANIC
 
-=item B<is_fatal>(REASON)
+=item B<is_fatal>($reason)
 
-Returns true if the REASON is severe enough to cause an exception
+Returns true if the $reason is severe enough to cause an exception
 (or program termination).
 
-=item B<is_reason>(NAME)
+=item B<is_reason>($name)
 
 Returns true if the STRING is one of the predefined REASONS.
 
-=item B<use_errno>(REASON)
+=item B<use_errno>($reason)
 
 =back
 
@@ -62,17 +62,17 @@ Run-modes are explained in Log::Report::Dispatcher.
 
 =over 4
 
-=item B<mode_accepts>(MODE)
+=item B<mode_accepts>($mode)
 
 Returns something acceptable by L<expand_reasons()|Log::Report::Util/"Reasons">
 
-=item B<mode_number>(NAME|MODE)
+=item B<mode_number>($name|$mode)
 
-Returns the MODE as number.
+Returns the $mode as number.
 
-=item B<must_show_location>(MODE, REASON)
+=item B<must_show_location>($mode, $reason)
 
-=item B<must_show_stack>(MODE, REASON)
+=item B<must_show_stack>($mode, $reason)
 
 =back
 
@@ -104,12 +104,12 @@ In SCALAR context, a HASH is returned which can contain more information:
 language, script, territory, variant, codeset, and modifiers.  The
 variant (RFC3066 is probably never used)
 
-=item B<pkg2domain>(PACKAGE, [DOMAIN, FILENAME, LINE])
+=item B<pkg2domain>( $package, [$domain, $filename, $line] )
 
-With DOMAIN, FILENAME and LINE, this registers a location where the
-textdomain is specified.  Each PACKAGE can only belong to one DOMAIN.
+With $domain, $filename and $line, this registers a location where the
+textdomain is specified.  Each $package can only belong to one $domain.
 
-Without these parameters, the registered domain for the PACKAGE is
+Without these parameters, the registered domain for the $package is
 returned.
 
 =item B<unescape_chars>(STRING)
@@ -128,8 +128,8 @@ For instance, backslash-t is replaced by a tab character.
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Optional distribution version 1.00,
-built on January 05, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Optional distribution version 1.01,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

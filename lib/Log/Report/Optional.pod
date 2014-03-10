@@ -49,8 +49,8 @@ Returns the classes which loaded the optional module.
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Optional distribution version 1.00,
-built on January 05, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Optional distribution version 1.01,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

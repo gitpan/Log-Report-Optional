@@ -6,8 +6,7 @@ use warnings;
 use strict;
 
 package Log::Report::Minimal::Domain;
-use vars '$VERSION';
-$VERSION = '1.00';
+our $VERSION = '1.01';
 
 
 use String::Print        'oo';

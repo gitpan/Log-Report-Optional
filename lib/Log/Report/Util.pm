@@ -7,8 +7,7 @@ use warnings;
 use strict;
 
 package Log::Report::Util;
-use vars '$VERSION';
-$VERSION = '1.00';
+our $VERSION = '1.01';
 
 use base 'Exporter';
 
@@ -45,6 +44,13 @@ my %modes     = (NORMAL => 0, VERBOSE => 1, ASSERT => 2, DEBUG => 3
   , 0 => 0, 1 => 1, 2 => 2, 3 => 3);
 my @mode_accepts = ('NOTICE-', 'INFO-', 'ASSERT-', 'ALL');
 
+# horrible mutual dependency with Log::Report(::Minimal)
+sub error__x($%)
+{   if(Log::Report::Minimal->can('error')) # loaded the ::Mimimal version
+         {  Log::Report::Minimal::error(Log::Report::Minimal::__x(@_)) }
+    else { Log::Report::error(Log::Report::__x(@_)) }
+}
+
 
 sub expand_reasons($)
 {   my $reasons = shift;
@@ -54,10 +60,10 @@ sub expand_reasons($)
         {   my $begin = $reason_code{$1 || 'TRACE'};
             my $end   = $reason_code{$2 || 'PANIC'};
             $begin && $end
-                or error __x "unknown reason {which} in '{reasons}'"
+                or error__x "unknown reason {which} in '{reasons}'"
                      , which => ($begin ? $2 : $1), reasons => $reasons;
 
-            error __x"reason '{begin}' more serious than '{end}' in '{reasons}"
+            error__x"reason '{begin}' more serious than '{end}' in '{reasons}"
               , begin => $1, end => $2, reasons => $reasons
                  if $begin >= $end;
 
@@ -69,7 +75,7 @@ sub expand_reasons($)
         elsif($r eq 'SYSTEM')   { $r{$reason_code{$_}}++ for @system  }
         elsif($r eq 'ALL')      { $r{$reason_code{$_}}++ for @reasons }
         else
-        {   error __x"unknown reason {which} in '{reasons}'"
+        {   error__x"unknown reason {which} in '{reasons}'"
               , which => $r, reasons => $reasons;
         }
     }
@@ -153,7 +159,7 @@ sub parse_locale($)
       : $primary =~ m/^[a-z]{2,3}$/ ? $primary            # ISO639-1 and -2
       : $primary eq 'i' && @subtags ? lc(shift @subtags)  # IANA
       : $primary eq 'x' && @subtags ? lc(shift @subtags)  # Private
-      : error __x"unknown locale language in locale `{locale}'"
+      : error__x"unknown locale language in locale `{locale}'"
            , locale => $locale;
 
     my $script;
